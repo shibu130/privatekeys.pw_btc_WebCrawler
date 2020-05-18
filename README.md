@@ -1,0 +1,2 @@
+# privatekeys.pw_btc_WebCrawler
+Well so i came upon this site while searching for btc private keys and all .So this privatekeys.pw has a directory of private keys of bitcoin and you can choose the page number and the private keys are generated on the fly and everytime its tiresome clicking the button ,so i was kind of learning selenium so i created the code in such  way that you will be going to each random pages and if a page in total contains any private key the page number will be written into a file 
