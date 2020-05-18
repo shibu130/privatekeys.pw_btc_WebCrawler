@@ -31,6 +31,10 @@ def random_page(last_page=None):
     try:
         page_number=randint(1,2573157538607026564968244111304175730063056983979442319613448069811514699875)
         driver=setup_driver()
+        #change line 38 with below for checking different type of address
+        #driver_url=https://privatekeys.pw/bitcoin-segwit/keys/+str(page_number)
+        #driver_urlhttps://privatekeys.pw/bitcoin-segwit-p2sh/keys/+str(page_number)  
+        #driver_url="https://privatekeys.pw/bitcoin/keys/"+str(page_number)
         driver_url="https://privatekeys.pw/bitcoin/keys/"+str(page_number)
         driver.get(driver_url)
         btcBalanceInThePage=WebDriverWait(driver,30).until(EC.visibility_of_element_located((By.XPATH,"/html/body/main/div[@class='container-fluid']/h3[@class='text-center']/span[@class='js-balances-bitcoin']/span[@class='badge badge-light']")))
