@@ -1,0 +1,7 @@
+Well for running this script you need -:
+
+1.selenium
+2.chromedriver for selenium (download the appropriate driver for your browser version)
+
+
+
