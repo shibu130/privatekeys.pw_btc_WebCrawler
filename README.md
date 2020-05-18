@@ -13,8 +13,11 @@ Well thumbs up to privatekeys.pw as well
 Donations and suggestions are appreciated
 
 Btc  1Hq3R6pFKtoXVQPsSU7dRRCQBRvnY22scm
+
 Eth  0x9717313433388d5a1D670B6358A7eecb08E25823
+
 Ltc  LN9JxoxmgKMFVsEZJXoThzstXnfTrMLTAu
+
 Bch  qpmzueg30xf224xng3ct7gm7297zgeaplvrkk9nq79
 
 
