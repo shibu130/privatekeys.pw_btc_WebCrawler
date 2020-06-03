@@ -14,6 +14,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import sys
+import selenium.common.exceptions
 
 #file
 file=open("pages_with_balance.txt","w")
@@ -57,17 +58,22 @@ if __name__ == "__main__":
                 print("go to bitcoin directory page  number {} on privatekeys.pw".format(page))
                 # exit(0)
                 file.writelines(page+"\n")
-            elif balance==0:
-                #timout or execption
-                balance,page=random_page(page)
+            # elif balance==0:
+            #     #timout or execption
+            #     balance,page=random_page(page)
 
-                if(balance>0):
-                    print("go to bitcoin directory page  number {} on privatekeys.pw".format(page))
-                    # condition=False
-                    file.writelines(page+"\n")
+            #     if(balance>0):
+            #         print("go to bitcoin directory page  number {} on privatekeys.pw".format(page))
+            #         # condition=False
+            #         file.writelines(page+"\n")
     except KeyboardInterrupt:
         file.close()
         print("crtl+d pressed")
+        sys.exit()
+
+    except selenium.common.exceptions.NoSuchWindowException:
+        file.close()
+        print("browser window closed")
         sys.exit()
 
         
