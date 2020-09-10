@@ -39,7 +39,7 @@ def random_page(last_page=None):
         driver_url="https://privatekeys.pw/bitcoin/keys/"+str(page_number)
         driver.get(driver_url)
         btcBalanceInThePage=WebDriverWait(driver,30).until(EC.visibility_of_element_located((By.XPATH,"/html/body/main/div[@class='container-fluid']/h3[@class='text-center']/span[@class='js-balances-bitcoin']/span[@class='badge badge-light']")))
-        balance_on_the_page=int(btcBalanceInThePage.text)
+        balance_on_the_page=float(btcBalanceInThePage.text)
         driver.close()
     except Exception:
         balance_on_the_page=0
