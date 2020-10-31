@@ -56,6 +56,7 @@ if __name__ == "__main__":
             balance,page=random_page()
             if(balance>0):
                 print("go to bitcoin directory page  number {} on privatekeys.pw".format(page))
+                #u want to stop here once u find a page with actual balance ? uncomment line 60
                 # exit(0)
                 file.writelines(page+"\n")
             # elif balance==0:
