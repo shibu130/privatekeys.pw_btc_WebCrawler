@@ -5,6 +5,9 @@
 #may be different
 #change the path accordingly
 
+import winsound
+frequency = 2500  # Set Frequency To 2500 Hertz
+duration = 9000  # Set Duration To 1000 ms == 1 second
 from random import randint
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -16,16 +19,18 @@ from selenium.common.exceptions import TimeoutException
 import sys
 import selenium.common.exceptions
 
-#file
-file=open("pages_with_balance.txt","w")
-# print(randint(1,2573157538607026564968244111304175730063056983979442319613448069811514699875))
-def setup_driver():
-    options=Options()
+file = open('out.txt', 'a')
 
-    #change binary location to the location where chrome/brave/chromium is installed
-    options.binary_location=r"C:\Program Files (x86)\BraveSoftware\Brave-Browser\Application\brave.exe"
-    #change the path of the chromedriver to where u have saved it on your computer
-    driver=webdriver.Chrome(executable_path=r"G:\selenium\chromedriver.exe",chrome_options=options)
+
+def setup_driver():
+    options = webdriver.ChromeOptions()
+    options.headless = True
+    options.add_argument('headless')
+    options.add_argument('no-sandbox')
+    options.add_argument("disable-gpu")
+    options.add_argument('disable-dev-shm-usage')
+    options.add_argument("user-agent=Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:84.0) Gecko/20100101 Firefox/84.0")
+    driver = webdriver.Chrome()
     return driver
 
 def random_page(last_page=None):
@@ -38,7 +43,7 @@ def random_page(last_page=None):
         #driver_url="https://privatekeys.pw/bitcoin/keys/"+str(page_number)
         driver_url="https://privatekeys.pw/bitcoin/keys/"+str(page_number)
         driver.get(driver_url)
-        btcBalanceInThePage=WebDriverWait(driver,30).until(EC.visibility_of_element_located((By.XPATH,"/html/body/main/div[@class='container-fluid']/h3[@class='text-center']/span[@class='js-balances-bitcoin']/span[@class='badge badge-light']")))
+        btcBalanceInThePage=WebDriverWait(driver,30).until(EC.visibility_of_element_located((By.XPATH,"/html/body/main/div[@class='container-fluid']/h3[@class='text-center']/span[@class='js-balances-bitcoin']/span[contains(@class, 'badge badge-success') or contains(@class, 'badge badge-light')]")))
         balance_on_the_page=float(btcBalanceInThePage.text)
         driver.close()
     except Exception:
@@ -53,12 +58,13 @@ if __name__ == "__main__":
     condition=True
     try:
         while(condition):
-            balance,page=random_page()
-            if(balance>0):
-                print("go to bitcoin directory page  number {} on privatekeys.pw".format(page))
+             if balance > 0:
+                with open('out.txt', 'a') as f:
+                    print("go to bitcoin directory page number {} on privatekeys.pw".format(page), file=f)
+                    winsound.Beep(frequency, duration)
                 #u want to stop here once u find a page with actual balance ? uncomment line 60
                 # exit(0)
-                file.writelines(page+"\n")
+                # file.writelines(page+"\n")
             # elif balance==0:
             #     #timout or execption
             #     balance,page=random_page(page)
